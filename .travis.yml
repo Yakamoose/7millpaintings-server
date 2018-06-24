@@ -3,6 +3,3 @@ node_js: node
 before_script: chmod 0777 ./node_modules/.bin/mocha
 services:
   - mongodb
-before_script:
-  - sleep 15
-  - mongo mydb_test --eval 'db.createUser({user:"travis",pwd:"test",roles:["readWrite"]});'
