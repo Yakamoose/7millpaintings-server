@@ -60,7 +60,6 @@ describe('API tests', function() {
 
   beforeEach(function() {
     return seedUserData();
-
   });
 
   afterEach(function() {
