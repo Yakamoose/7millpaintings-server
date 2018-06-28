@@ -1,4 +1,4 @@
-<h1>7 MILLION PAINTINGS</h1>
+<h1>7 MILLION PAINTINGS(server)</h1>
 
 <a href="https://sevenmillionpaintings.herokuapp.com/"
   target="blank">https://sevenmillionpaintings.herokuapp.com/</a>
