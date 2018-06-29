@@ -10,23 +10,14 @@ mongoose.Promise = global.Promise;
 const {PORT, DATABASE_URL} = require('./config');
 const {User} = require('./models');
 
-
 const app = express();
-// app.use(express.static('public'));
+
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(bodyParser.json());
 
-
-// app.use(
-//     cors({
-//         origin: CLIENT_ORIGIN
-//     })
-// );
 app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
-  // res.header('Access-Control-Allow-Headers', 'Content-Type');
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  // res.header('Access-Control-Allow-Origin', 'GET');
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE');
 
   next();
@@ -57,7 +48,6 @@ app.get('/user/:id', (req, res) => {
 });
 
 app.get('/user/:userName/:password', (req, res) => {
-  // console.log(req.params);
   User
     .findOne({userName: req.params.userName, password: req.params.password })
     .then(user => {
@@ -74,8 +64,6 @@ app.get('/user/:userName/:password', (req, res) => {
 })
 
 app.post('/new-user', (req, res) => {
-  // console.log('req.body');
-  // console.log(req.body);
 
   const requiredFields = ['firstName', 'lastName', 'userName', 'password', 'email'];
   for (let i = 0; i < requiredFields.length; i++) {
@@ -90,7 +78,6 @@ app.post('/new-user', (req, res) => {
   User
     .findOne({userName: req.body.userName, password: req.body.password })
     .then(user => {
-      // console.log(user);
       if(user === null) {
         User
           .create({
@@ -149,10 +136,7 @@ app.delete('/user/:id', (req, res) => {
   .catch(err => res.status(500).json({ message: 'Internal server error' }));
 });
 
-// app.use('*', function (req, res) {
-//   console.log('uh oh');
-//   res.status(404).json({ message: 'Not Found' });
-// });
+
 
 let server;
 

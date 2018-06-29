@@ -19,19 +19,17 @@ function seedUserData() {
   for (let i = 0; i < 5; i++) {
     seedData.push(generateUser());
   };
-  // console.log(seedData);
   return User.insertMany(seedData);
 }
 
 function generateUser() {
-  // console.log('generating user data');
+
   return {
     firstName: faker.name.firstName(),
     lastName: faker.name.lastName(),
     userName: faker.internet.userName(),
     password: faker.internet.password(),
     email: faker.internet.email()
-    // orders: []
   };
 };
 
@@ -42,14 +40,11 @@ function generateArtSample() {
   }
 }
 
-
-
 function tearDownDb() {
   console.warn('Deleting database');
   return mongoose.connection.dropDatabase();
 }
-// const testOrder = generateOrder();
-// console.log(testOrder.people[0].orders[0]);
+
 
 
 describe('API tests', function() {
@@ -135,10 +130,7 @@ describe('API tests', function() {
         return User
           .findOne()
           .then(function(res) {
-            // console.log(res._id)
             testArt.id = res._id;
-            // console.log(testArt);
-            // console.log('testOrder');
             return chai.request(app)
               .put(`/save-image/${testArt.id}`)
               .send(testArt)
